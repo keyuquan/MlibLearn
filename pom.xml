@@ -19,6 +19,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
@@ -67,21 +68,6 @@
             <version>${spark.version}</version>
         </dependency>
 
-        <!-- Spark SQL -->
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.10</artifactId>
-            <version>${spark.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-mllib_2.11</artifactId>
-            <version>${spark.version}</version>
-        </dependency>
-
-
         <!--<dependency>-->
         <!--<groupId>org.elasticsearch</groupId>-->
         <!--<artifactId>elasticsearch</artifactId>-->
@@ -116,8 +102,6 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
         </dependency>
-
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -136,7 +120,34 @@
             <groupId>commons-pool</groupId>
             <artifactId>commons-pool</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.isec.parent</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-mllib_2.11</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.11</artifactId>
+            <version>3.2.0-SNAP10</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scalactic</groupId>
+            <artifactId>scalactic_2.11</artifactId>
+            <version>3.2.0-SNAP10</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scalacheck</groupId>
+            <artifactId>scalacheck_2.11</artifactId>
+            <version>1.14.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <!--scala待编译的文件目录-->
@@ -209,27 +220,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <!--<resources>-->
-        <!--&lt;!&ndash; Intellij idea兼容 &ndash;&gt;-->
-        <!--<resource>-->
-        <!--<directory>src/main/java</directory>-->
-        <!--<includes>-->
-        <!--<include>**/*.xml</include>-->
-        <!--</includes>-->
-        <!--</resource>-->
-
-        <!--<resource>-->
-        <!--<directory>src/main/resources</directory>-->
-        <!--&lt;!&ndash; 过滤替换配置文件变量 &ndash;&gt;-->
-        <!--<filtering>true</filtering>-->
-        <!--</resource>-->
-
-        <!--&lt;!&ndash; 环境配置文件 &ndash;&gt;-->
-        <!--<resource>-->
-        <!--<directory>deploy/${env}</directory>-->
-        <!--</resource>-->
-        <!--</resources>-->
-
         <resources>
             <resource>
                 <directory>src/main/java</directory>
