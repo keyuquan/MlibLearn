@@ -38,7 +38,7 @@ object ALSExample {
 		val Array(training, test) = ratings.randomSplit(Array(0.8, 0.2))
 		
 		// 二.训练数据，构建模型
-		val als = new ALS()
+		val als: ALS = new ALS()
 				.setMaxIter(5)
 				.setRegParam(0.01)
 				.setUserCol("userId")
@@ -78,6 +78,6 @@ object ALSExample {
 	}
 }
 
-// scalastyle:on println
+
 
 
