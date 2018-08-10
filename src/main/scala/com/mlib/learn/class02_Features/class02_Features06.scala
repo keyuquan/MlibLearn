@@ -1,10 +1,12 @@
 package com.mlib.learn.class02_Features
 
 import org.apache.log4j.{Level, Logger}
+import org.apache.spark.ml.feature.NGram
 import org.apache.spark.sql.SparkSession
 
 /**
-  * CountVectorizer
+  * n-gram（N元模型）
+  * 每n个词一截取
   */
 object class02_Features06 {
 	def main(args: Array[String]): Unit = {
@@ -19,5 +21,18 @@ object class02_Features06 {
 				.appName("class02_DataETL")
 				.master("local[*]")
 				.getOrCreate()
+		
+		
+		val wordDataFrame = spark.createDataFrame(Seq(
+			(0, Array("Hi", "I", "heard", "about", "Spark")),
+			(1, Array("I", "wish", "Java", "could", "use", "case", "classes")),
+			(2, Array("Logistic", "regression", "models", "are", "neat"))
+		)).toDF("id", "words")
+		
+		val ngram = new NGram().setN(2).setInputCol("words").setOutputCol("ngrams")
+		
+		val ngramDataFrame = ngram.transform(wordDataFrame)
+		ngramDataFrame.select("ngrams").show(false)
+		
 	}
 }

@@ -4,7 +4,7 @@ import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
 
 /**
-  * CountVectorizer
+  * Binarization （二值化）是将数值特征阈值化为二进制（0/1）特征的过程。
   */
 object class02_Features07 {
 	def main(args: Array[String]): Unit = {
@@ -19,5 +19,22 @@ object class02_Features07 {
 				.appName("class02_DataETL")
 				.master("local[*]")
 				.getOrCreate()
+		
+		import org.apache.spark.ml.feature.Binarizer
+		
+		val data = Array((0, 0.1), (1, 0.8), (2, 0.2))
+		val dataFrame = spark.createDataFrame(data).toDF("id", "feature")
+		dataFrame.show()
+		
+		val binarizer: Binarizer = new Binarizer()
+				.setInputCol("feature")
+				.setOutputCol("binarized_feature")
+				.setThreshold(0.5)
+		
+		val binarizedDataFrame = binarizer.transform(dataFrame)
+		
+		println(s"Binarizer output with Threshold = ${binarizer.getThreshold}")
+		binarizedDataFrame.show()
+		
 	}
 }
