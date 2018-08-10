@@ -8,7 +8,7 @@ import org.apache.spark.sql.functions._
   * Feature Transformers（特征变换）
   * Tokenizer（分词器） : 将文本 （如一个句子）拆分成单词
   */
-object class02_Features04 {
+object class04_RegexTokenizer {
 	def main(args: Array[String]): Unit = {
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)

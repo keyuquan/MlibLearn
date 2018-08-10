@@ -9,7 +9,7 @@ import org.apache.spark.sql.SparkSession
   *
   * 把词语转化为词向量
   */
-object class02_Features03 {
+object class03_CountVectorizerModel {
 	def main(args: Array[String]): Unit = {
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)

@@ -9,7 +9,7 @@ import org.apache.spark.sql.{DataFrame, Row, SparkSession}
   * Word2Vec
   * 把一句话 转化为一个词向量
   */
-object class02_Features02 {
+object class02_word2Vec {
 	def main(args: Array[String]): Unit = {
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)

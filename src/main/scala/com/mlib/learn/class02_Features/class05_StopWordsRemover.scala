@@ -10,7 +10,7 @@ import org.apache.spark.sql.SparkSession
   * Stop words （停用字）是（在文档中）频繁出现，但未携带太多意义的词语，它们不应该参与算法运算。
   *
   */
-object class02_Features05 {
+object class05_StopWordsRemover {
 	def main(args: Array[String]): Unit = {
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)

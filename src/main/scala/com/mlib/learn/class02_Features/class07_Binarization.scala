@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 /**
   * Binarization （二值化）是将数值特征阈值化为二进制（0/1）特征的过程。
   */
-object class02_Features07 {
+object class07_Binarization {
 	def main(args: Array[String]): Unit = {
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)
