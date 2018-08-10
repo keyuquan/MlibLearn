@@ -1,10 +1,13 @@
 package com.mlib.learn
 
+import com.isec.ida.common.utils.Utils
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.recommendation.ALS
-import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, Row, SparkSession}
+import org.elasticsearch.spark.rdd.EsSpark
+
+import scala.collection.mutable.ListBuffer
 
 object ALSExample {
 	
@@ -46,19 +49,33 @@ object ALSExample {
 				.setRatingCol("rating")
 		val model = als.fit(training)
 		
+		//	model.save("E:\\workspace\\MlibLearn\\src\\main\\scala\\com\\mlib\\learn\\mode")
+		// 	val model2: ALS = ALS.load("E:\\workspace\\MlibLearn\\src\\main\\scala\\com\\mlib\\learn\\mode")
+		
 		// 冷启动问题，丢弃没有标签的数据
 		model.setColdStartStrategy("drop")
 		
 		//三.推荐
 		// 1.为每个用户推荐10个电影
 		val userRecs: DataFrame = model.recommendForAllUsers(10)
-		userRecs.foreach(it => {
-			println(it)
+		
+		val rdd_rz = userRecs.rdd.map(row => {
+			val id = Utils.hash("lm" + row.get(0).toString)
+			val inter_amounts: Seq[Row] = row.getAs[Seq[Row]](1)
+			val usePlatformList = new ListBuffer[Map[String, Any]]()
+			for (inter_amount <- inter_amounts) {
+				usePlatformList.append(Map("predictInterest" -> inter_amount(0), "amount" -> inter_amount(1)))
+			}
+			Map("originSystem" -> "lm", "userId" -> row.get(0).toString.toLong, "predictInterests" -> "", "id" -> id)
 		})
+		
+		EsSpark.saveToEs(rdd_rz, "test2" + "/" + "test2", Map("es.mapping.id" -> "id"))
+		
+		
 		// 为每个电影，推荐10个用户
 		val movieRecs = model.recommendForAllItems(10)
-		userRecs.show()
-		movieRecs.show()
+		//		userRecs.show()
+		//		movieRecs.show()
 		
 		
 		// 四.通过计算测试数据上的RMSE来评估模型
@@ -76,6 +93,7 @@ object ALSExample {
 		
 		spark.stop()
 	}
+	
 }
 
 

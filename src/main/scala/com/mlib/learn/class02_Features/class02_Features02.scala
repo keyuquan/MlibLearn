@@ -1,9 +1,9 @@
-package com.mlib.learn
+package com.mlib.learn.class02_Features
 
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import org.apache.spark.ml.feature.Word2Vec
 import org.apache.spark.ml.linalg.Vector
+import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 
 /**
   * Word2Vec
