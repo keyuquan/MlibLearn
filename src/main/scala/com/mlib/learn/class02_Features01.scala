@@ -6,8 +6,9 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 
 /**
   * 特征的提取，转化 和 选择
+  * TF-IDF（词频-逆向文档频率）
   */
-object class02_Features {
+object class02_Features01 {
 	def main(args: Array[String]): Unit = {
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)
