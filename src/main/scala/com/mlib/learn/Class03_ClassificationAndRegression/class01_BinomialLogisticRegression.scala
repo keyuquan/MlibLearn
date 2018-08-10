@@ -1,9 +1,7 @@
 package com.mlib.learn.Class03_Regression
 
-import breeze.linalg.max
 import org.apache.log4j.{Level, Logger}
-import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.apache.spark.ml.classification.{BinaryLogisticRegressionSummary, LogisticRegression}
+import org.apache.spark.sql.SparkSession
 
 /**
   * 分类算法
@@ -29,8 +27,8 @@ object class01_BinomialLogisticRegression {
 		val training = spark
 				.read
 				.format("libsvm")
-				.load("data/mllib/sample_multiclass_classification_data.txt")
-		
+				.load("E:\\workspace\\MlibLearn\\src\\main\\scala\\com\\mlib\\learn\\data\\mllib\\sample_multiclass_classification_data.txt")
+		training.show(100)
 		val lr = new LogisticRegression()
 				.setMaxIter(10)
 				.setRegParam(0.3)
