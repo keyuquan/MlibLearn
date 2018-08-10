@@ -1,4 +1,4 @@
-package com.mlib.learn
+package com.mlib.learn.class04_Clustering
 
 import com.isec.ida.common.utils.Utils
 import org.apache.log4j.{Level, Logger}
@@ -35,7 +35,7 @@ object ALSExample {
 		import spark.implicits._
 		
 		// 一.读取数据 ，并把数据划分为 训练集 和 测试集
-		val ratings = spark.read.textFile("E:\\workspace\\MlibLearn\\src\\main\\scala\\com\\mlib\\learn\\sample_movielens_ratings.txt")
+		val ratings = spark.read.textFile("E:\\workspace\\MlibLearn\\src\\main\\scala\\com\\mlib\\learn\\data\\mllib\\als\\sample_movielens_ratings.txt")
 				.map(parseRating)
 				.toDF()
 		val Array(training, test) = ratings.randomSplit(Array(0.8, 0.2))
