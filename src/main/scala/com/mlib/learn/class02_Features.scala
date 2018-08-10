@@ -32,9 +32,11 @@ object class02_Features {
 		val wordsData: DataFrame = tokenizer.transform(sentenceData)
 		wordsData.show()
 		
+		// 词频 hashingTF  转换器 : Term Frequency  生成 生成词频TF向量
 		val hashingTF = new HashingTF().setInputCol("words").setOutputCol("rawFeatures").setNumFeatures(20)
-		val featurizedData = hashingTF.transform(wordsData)
+		val featurizedData: DataFrame = hashingTF.transform(wordsData)
 		
+		// IDF(逆向文档频率) 模型学习器 :IDFModel获取特征向量（通常由HashingTF或CountVectorizer创建）并缩放每列。直观地说，它下调了在语料库中频繁出现的列
 		val idf: IDF = new IDF().setInputCol("rawFeatures").setOutputCol("features")
 		val idfModel: IDFModel = idf.fit(featurizedData)
 		
