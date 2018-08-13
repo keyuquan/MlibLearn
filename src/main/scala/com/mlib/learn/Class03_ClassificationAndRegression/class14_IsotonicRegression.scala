@@ -2,12 +2,12 @@ package com.mlib.learn.Class03_ClassificationAndRegression
 
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.ml.regression.IsotonicRegression
 
 /**
-  * 多层感知器分类器
+  * 保序回归
   */
-object class05_MultilayerPerceptronClassifier {
-	
+object class14_IsotonicRegression {
 	def main(args: Array[String]): Unit = {
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)
@@ -20,7 +20,19 @@ object class05_MultilayerPerceptronClassifier {
 				.appName(this.getClass.getName.replace("$", ""))
 				.master("local[*]")
 				.getOrCreate()
-	
+		
+		// Loads data.
+		val dataset = spark.read.format("libsvm")
+				.load("data/mllib/sample_isotonic_regression_libsvm_data.txt")
+		
+		// Trains an isotonic regression model.
+		val ir = new IsotonicRegression()
+		val model = ir.fit(dataset)
+		
+		println(s"Boundaries in increasing order: ${model.boundaries}\n")
+		println(s"Predictions associated with the boundaries: ${model.predictions}\n")
+		
+		// Makes predictions.
+		model.transform(dataset).show()
 	}
-	
 }
