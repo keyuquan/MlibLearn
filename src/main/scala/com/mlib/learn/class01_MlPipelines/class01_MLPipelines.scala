@@ -25,7 +25,7 @@ object class01_MLPipelines {
 		
 		val spark: SparkSession = SparkSession
 				.builder
-				.appName("class01_MLPipelines")
+				.appName(this.getClass.getName.replace("$", ""))
 				.master("local[*]")
 				.getOrCreate()
 		

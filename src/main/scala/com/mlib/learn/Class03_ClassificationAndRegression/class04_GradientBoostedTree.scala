@@ -17,7 +17,7 @@ object class04_GradientBoostedTree {
 		
 		val spark: SparkSession = SparkSession
 				.builder
-				.appName("class02_DataETL")
+				.appName(this.getClass.getName.replace("$", ""))
 				.master("local[*]")
 				.getOrCreate()
 		

@@ -29,7 +29,7 @@ object ALSExample {
 		
 		val spark: SparkSession = SparkSession
 				.builder
-				.appName("ALSExample")
+				.appName(this.getClass.getName.replace("$", ""))
 				.master("local[*]")
 				.getOrCreate()
 		import spark.implicits._
