@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/hdp/2.6.4.0-91/spark2/bin/spark-submit --master spark://isec-hdp01:7077 --class com.isec.ida.common.spark.Kafka2sparkstreaming /usr/local/src/common-1.0-SNAPSHOT.jar > /dev/null 2>&1 &

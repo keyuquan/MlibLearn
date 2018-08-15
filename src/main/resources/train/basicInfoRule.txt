@@ -1,0 +1,8 @@
+user.sex.type=0:色情,赌博,新闻,IT,游戏,军事,房产,摄影,政府,组织,体育|1:色情,赌博,新闻,IT,游戏,军事,房产,摄影,政府,组织,体育
+user.sex.default=0
+user.age.type=1: |2: |3: |4: |5: |6 |7: |8:
+user.age.default=
+user.vocation.type=1: |2: |3: |4: |5: | 6: |7: |8: | 9: | 10: |11: | 12: |13:
+user.vocation.default=
+user.monthlyIncome.type=
+user.monthlyIncome.default=1: |2: |3: |4: |5： |6： |7: |8:
