@@ -29,6 +29,12 @@ object class01_BinomialLogisticRegression {
 				.format("libsvm")
 				.load("E:\\workspace\\MlibLearn\\src\\main\\scala\\com\\mlib\\learn\\data\\mllib\\sample_multiclass_classification_data.txt")
 		training.show(100)
+		
+		/**
+		  * setRegParam : 设置正则化参数，防止过拟合问题，不要设置太大，否则就欠拟合
+		  * setElasticNetParam： 正则化范式比(默认0.0)，正则化一般有两种范式：L1(Lasso)和L2(Ridge)。
+		  * L1一般用于特征的稀疏化（过滤掉不需要的特征），L2一般用于防止过拟合。这里的参数即设置L1范式的占比，默认0.0即只使用L2范式
+		  */
 		val lr = new LogisticRegression()
 				.setMaxIter(10)
 				.setRegParam(0.3)
@@ -37,7 +43,11 @@ object class01_BinomialLogisticRegression {
 		// Fit the model
 		val lrModel = lr.fit(training)
 		
-		// Print the coefficients and intercept for multinomial logistic regression
+		val prediction = lrModel.transform(training)
+		prediction.show(100)
+		
+		
+		// 打印多项逻辑回归的系数和截距
 		println(s"Coefficients: \n${lrModel.coefficientMatrix}")
 		println(s"Intercepts: ${lrModel.interceptVector}")
 		
