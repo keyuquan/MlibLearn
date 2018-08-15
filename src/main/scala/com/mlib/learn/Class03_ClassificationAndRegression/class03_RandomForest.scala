@@ -13,6 +13,7 @@ import org.apache.spark.sql.SparkSession
 object class03_RandomForest {
 	
 	def main(args: Array[String]): Unit = {
+		
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.spark").setLevel(Level.WARN)
@@ -24,7 +25,6 @@ object class03_RandomForest {
 				.appName(this.getClass.getName.replace("$", ""))
 				.master("local[*]")
 				.getOrCreate()
-		
 		
 		// Load and parse the data file, converting it to a DataFrame.
 		val data = spark.read.format("libsvm").load("E:\\workspace\\MlibLearn\\src\\main\\scala\\com\\mlib\\learn\\data\\mllib\\sample_libsvm_data.txt")
