@@ -9,12 +9,13 @@ import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 import org.apache.spark.ml.feature._
 
 /**
-  *  决策树 分类
+  * 决策树 分类
   *
   */
 object class02_DecisionTree {
 	
 	def main(args: Array[String]): Unit = {
+		
 		Logger.getLogger("org.apache.kafka").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.zookeeper").setLevel(Level.ERROR)
 		Logger.getLogger("org.apache.spark").setLevel(Level.WARN)
@@ -36,7 +37,8 @@ object class02_DecisionTree {
 				.setInputCol("label")
 				.setOutputCol("indexedLabel")
 				.fit(data)
-		// Automatically identify categorical features, and index them.
+		
+		// Automatically identify categorical features, and index them. 自动识别分类功能并对其进行索引
 		val featureIndexer: VectorIndexerModel = new VectorIndexer()
 				.setInputCol("features")
 				.setOutputCol("indexedFeatures")
