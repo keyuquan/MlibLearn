@@ -55,12 +55,10 @@ object ALSExample {
 		// 1.为每个用户推荐10个电影
 		val userRecs: DataFrame = model.recommendForAllUsers(10)
 		
-		
 		// 为每个电影，推荐10个用户
 		val movieRecs = model.recommendForAllItems(10)
-		//		userRecs.show()
-		//		movieRecs.show()
-		
+		userRecs.show()
+		movieRecs.show()
 		
 		// 四.通过计算测试数据上的RMSE来评估模型
 		// 1.真实数据
