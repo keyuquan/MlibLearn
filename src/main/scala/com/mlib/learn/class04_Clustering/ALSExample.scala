@@ -11,7 +11,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
   * userCF: 基于用户相似度的推荐： 和用户有共同喜好的用户的喜好
   * itemCF: 基于物品相似度的推荐： 和用户购买的商品相似的商品
   * modelCF: 基于模型相似度的计算：根据用户喜好信息，训练处一个模型，根据模型给用户进行推荐
-  *
+  * ALS ： 最小二乘集法，使用的是 modelCF
   */
 object ALSExample {
 	
