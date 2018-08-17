@@ -7,6 +7,11 @@ import org.apache.spark.storage.StorageLevel
 
 import scala.collection.mutable.ArrayBuffer
 
+/**
+  *
+  * 基于用户相似度的推荐小案例，产生共生矩阵的算法 用 * ，有点不太合适
+  *
+  */
 object Recommend {
 	
 	def main(args: Array[String]) {
@@ -30,7 +35,7 @@ object Recommend {
 			val tokens = line.split(",")
 			(tokens(0).toLong, (tokens(1).toLong, if (tokens.length > 2) tokens(2).toFloat else 0f))
 		}.aggregateByKey(Array[(Long, Float)]())(_ :+ _, _ ++ _).filter(_._2.size > 2).values.persist(StorageLevel.MEMORY_ONLY_SER)
-	
+		
 		
 		//全局计算模 (101,76.25)
 		val norms: RDD[(Long, Float)] = dataClean.flatMap(_.map(y => (y._1, y._2 * y._2))).reduceByKey(_ + _)
