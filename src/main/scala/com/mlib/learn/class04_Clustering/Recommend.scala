@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 /**
   *
-  * 基于用户相似度的推荐小案例，产生共生矩阵的算法 用 * ，有点不太合适
+  * 基于用户相似度的推荐小案例
   *
   */
 object Recommend {
@@ -48,7 +48,7 @@ object Recommend {
 		val matrix: RDD[((Long, Long), Float)] = dataClean.map(list => list.sortWith(_._1 > _._1)).flatMap(occMatrix).reduceByKey(_ + _)
 		matrix.foreach(println)
 		
-		//计算相似度 (103,(102,0.1975496259559987))
+		//计算相似度 (103,(102,0.1975496259559987)) ： 计算相似度  1/1+ (P（A）+ p(B) - P(A->B) )
 		val similarity = matrix.map(a => (a._1._1, (a._1._2, 1 / (1 + Math.sqrt(normsMap.value.get(a._1._1).get + normsMap.value.get(a._1._2).get - 2 * a._2)))))
 		
 		similarity.collect().foreach(println)
